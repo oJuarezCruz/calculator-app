@@ -49,7 +49,7 @@ export default function App() {
 
   const [currentTheme, setCurrentTheme] = useState(0);
 
-  const [screenDisplay, setScrenDisplay] = useState("0");
+  const [screenDisplay, setScreenDisplay] = useState("0");
 
   return (
     <div className={`${themes[currentTheme].mainTheme}`}>
@@ -73,24 +73,24 @@ export default function App() {
           delKeyStyle={`${themes[currentTheme].delKeyStyle}`}
           resetKeyStyle={`${themes[currentTheme].resetKeyTheme}`}
           equalKeyStyle={`${themes[currentTheme].equalKeyTheme}`}
-          sevenKeyEvent={() => setScrenDisplay("7")}
-          eightKeyEvent={() => setScrenDisplay("8")}
-          nineKeyEvent={() => setScrenDisplay("9")}
-          delKeyEvent={() => setScrenDisplay("DEL")}
-          fourKeyEvent={() => setScrenDisplay("4")}
-          fiveKeyEvent={() => setScrenDisplay("5")}
-          sixKeyEvent={() => setScrenDisplay("6")}
-          sumKeyEvent={() => setScrenDisplay("+")}
-          oneKeyEvent={() => setScrenDisplay("1")}
-          twoKeyEvent={() => setScrenDisplay("2")}
-          threeKeyEvent={() => setScrenDisplay("3")}
-          subKeyEvent={() => setScrenDisplay("-")}
-          dotKeyEvent={() => setScrenDisplay(".")}
-          zeroKeyEvent={() => setScrenDisplay("0")}
-          divideKeyEvent={() => setScrenDisplay("/")}
-          multiplyKeyEvent={() => setScrenDisplay("x")}
-          resetKeyEvent={() => setScrenDisplay("0")}
-          equalKeyEvent={() => setScrenDisplay("=")}
+          sevenKeyEvent={() => setScreenDisplay("0")}
+          eightKeyEvent={() => setScreenDisplay("0")}
+          nineKeyEvent={() => setScreenDisplay("0")}
+          delKeyEvent={() => setScreenDisplay("0")}
+          fourKeyEvent={() => setScreenDisplay("0")}
+          fiveKeyEvent={() => setScreenDisplay("0")}
+          sixKeyEvent={() => setScreenDisplay("0")}
+          sumKeyEvent={() => setScreenDisplay("0")}
+          oneKeyEvent={() => setScreenDisplay("0")}
+          twoKeyEvent={() => setScreenDisplay("0")}
+          threeKeyEvent={() => setScreenDisplay("0")}
+          subKeyEvent={() => setScreenDisplay("0")}
+          dotKeyEvent={() => setScreenDisplay("0")}
+          zeroKeyEvent={() => setScreenDisplay("0")}
+          divideKeyEvent={() => setScreenDisplay("0")}
+          multiplyKeyEvent={() => setScreenDisplay("0")}
+          resetKeyEvent={() => setScreenDisplay("0")}
+          equalKeyEvent={() => setScreenDisplay("0")}
         />
       </main>
     </div>
