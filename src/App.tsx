@@ -1,3 +1,4 @@
+import { Parser } from "expr-eval";
 import CalcKeyPad from "./components/CalcKeyPad";
 import CalcScreen from "./components/CalcScreen";
 import Nav from "./components/Nav";
@@ -12,7 +13,7 @@ export default function App() {
         navBtnTheme1: "p-1.5 rounded-full cursor-pointer bg-theme1KeyEqualNToggleBg",
         navBtnTheme2: "p-1.5 rounded-full cursor-pointer bg-theme1KeyEqualNToggleBg opacity-0",
         navBtnTheme3: "p-1.5 rounded-full cursor-pointer bg-theme1KeyEqualNToggleBg opacity-0",
-        screenTheme: "p-6 rounded-lg w-full md:w-2/3 lg:w-2/5 bg-theme1ScreenBg",
+        screenTheme: "pl-6 py-6 pr-3 rounded-lg w-full md:w-2/3 lg:w-2/5 bg-theme1ScreenBg",
         keyPadTheme: "w-full grid grid-cols-4 md:w-2/3 lg:w-2/5 rounded-lg p-4 bg-theme1ToggleBgAndKeypadBg",
         defaultKeyTheme: "p-4 text-3xl rounded m-1 bg-theme1NormalKeyBg border-b-4 border-theme1NormalKeyShadow text-theme1KeyTxt",
         delKeyStyle: "py-4 px-2 text-1xl uppercase rounded m-1 bg-theme1CalcKeyBg border-b-4 border-theme1KeyShadow",
@@ -25,7 +26,7 @@ export default function App() {
         navBtnTheme1: "p-1.5 rounded-full cursor-pointer bg-theme2KeyEqualNToggleBg opacity-0",
         navBtnTheme2: "p-1.5 rounded-full cursor-pointer bg-theme2KeyEqualNToggleBg",
         navBtnTheme3: "p-1.5 rounded-full cursor-pointer bg-theme2KeyEqualNToggleBg opacity-0",
-        screenTheme: "p-6 rounded-lg w-full md:w-2/3 lg:w-2/5 bg-theme2ScreenBg",
+        screenTheme: "pl-6 py-6 pr-3 rounded-lg w-full md:w-2/3 lg:w-2/5 bg-theme2ScreenBg",
         keyPadTheme: "w-full grid grid-cols-4 md:w-2/3 lg:w-2/5 rounded-lg p-4 bg-theme2ToggleBgAndKeypadBg",
         defaultKeyTheme: "p-4 text-3xl rounded m-1 bg-theme2NormalKeyBg border-b-4 border-theme2NormalKeyShadow text-theme2KeyTxt",
         delKeyStyle: "py-4 px-2 text-1xl uppercase rounded m-1 bg-theme2CalcKeyBg border-b-4 border-theme2KeyShadow text-white",
@@ -38,7 +39,7 @@ export default function App() {
         navBtnTheme1: "p-1.5 rounded-full cursor-pointer bg-theme3KeyEqualNToggleBg opacity-0",
         navBtnTheme2: "p-1.5 rounded-full cursor-pointer bg-theme3KeyEqualNToggleBg opacity-0",
         navBtnTheme3: "p-1.5 rounded-full cursor-pointer bg-theme3KeyEqualNToggleBg",
-        screenTheme: "p-6 rounded-lg w-full md:w-2/3 lg:w-2/5 bg-theme3ToggleKeypadAndScreenBg",
+        screenTheme: "pl-6 py-6 pr-3 rounded-lg w-full md:w-2/3 lg:w-2/5 bg-theme3ToggleKeypadAndScreenBg",
         keyPadTheme: "w-full grid grid-cols-4 md:w-2/3 lg:w-2/5 rounded-lg p-4 bg-theme3ToggleKeypadAndScreenBg",
         defaultKeyTheme: "p-4 text-3xl rounded m-1 bg-theme3NormalKeyBg border-b-4 border-theme3NormalKeyBgShadow text-theme3KeyTxt",
         delKeyStyle: "py-4 px-2 text-1xl uppercase rounded m-1 bg-theme3CalcKeyBg border-b-4 border-theme3CalcKeyBgShadow text-white",
@@ -49,7 +50,9 @@ export default function App() {
 
   const [currentTheme, setCurrentTheme] = useState(0);
 
-  const [screenDisplay, setScreenDisplay] = useState("0");
+  const [screenDisplay, setScreenDisplay] = useState("");
+
+  const handleLengthLimit = screenDisplay.length <= 20 ? screenDisplay : screenDisplay.substring(0, 20);
 
   return (
     <div className={`${themes[currentTheme].mainTheme}`}>
@@ -65,7 +68,7 @@ export default function App() {
       <main className="w-full flex items-center flex-col gap-4">
         <CalcScreen
           ScreenStyle={`${themes[currentTheme].screenTheme}`}
-          ScreenTxt={screenDisplay.length <= 20 ? screenDisplay : screenDisplay.substring(0, 20)}
+          ScreenTxt={handleLengthLimit}
         />
         <CalcKeyPad
           keyPadStyle={`${themes[currentTheme].keyPadTheme}`}
@@ -73,24 +76,24 @@ export default function App() {
           delKeyStyle={`${themes[currentTheme].delKeyStyle}`}
           resetKeyStyle={`${themes[currentTheme].resetKeyTheme}`}
           equalKeyStyle={`${themes[currentTheme].equalKeyTheme}`}
-          sevenKeyEvent={() => setScreenDisplay("0")}
-          eightKeyEvent={() => setScreenDisplay("0")}
-          nineKeyEvent={() => setScreenDisplay("0")}
-          delKeyEvent={() => setScreenDisplay("0")}
-          fourKeyEvent={() => setScreenDisplay("0")}
-          fiveKeyEvent={() => setScreenDisplay("0")}
-          sixKeyEvent={() => setScreenDisplay("0")}
-          sumKeyEvent={() => setScreenDisplay("0")}
-          oneKeyEvent={() => setScreenDisplay("0")}
-          twoKeyEvent={() => setScreenDisplay("0")}
-          threeKeyEvent={() => setScreenDisplay("0")}
-          subKeyEvent={() => setScreenDisplay("0")}
-          dotKeyEvent={() => setScreenDisplay("0")}
-          zeroKeyEvent={() => setScreenDisplay("0")}
-          divideKeyEvent={() => setScreenDisplay("0")}
-          multiplyKeyEvent={() => setScreenDisplay("0")}
-          resetKeyEvent={() => setScreenDisplay("0")}
-          equalKeyEvent={() => setScreenDisplay("0")}
+          sevenKeyEvent={() => setScreenDisplay(screenDisplay + "7")}
+          eightKeyEvent={() => setScreenDisplay(screenDisplay + "8")}
+          nineKeyEvent={() => setScreenDisplay(screenDisplay + "9")}
+          delKeyEvent={() => setScreenDisplay(screenDisplay.slice(1))}
+          fourKeyEvent={() => setScreenDisplay(screenDisplay + "4")}
+          fiveKeyEvent={() => setScreenDisplay(screenDisplay + "5")}
+          sixKeyEvent={() => setScreenDisplay(screenDisplay + "6")}
+          sumKeyEvent={() => setScreenDisplay(screenDisplay + "+")}
+          oneKeyEvent={() => setScreenDisplay(screenDisplay + "1")}
+          twoKeyEvent={() => setScreenDisplay(screenDisplay + "2")}
+          threeKeyEvent={() => setScreenDisplay(screenDisplay + "3")}
+          subKeyEvent={() => setScreenDisplay(screenDisplay + "-")}
+          dotKeyEvent={() => setScreenDisplay(screenDisplay + ".")}
+          zeroKeyEvent={() => setScreenDisplay(screenDisplay + "0")}
+          divideKeyEvent={() => setScreenDisplay(screenDisplay + "/")}
+          multiplyKeyEvent={() => setScreenDisplay(screenDisplay + "*")}
+          resetKeyEvent={() => setScreenDisplay("")}
+          equalKeyEvent={() => { setScreenDisplay(Parser.evaluate(screenDisplay).toString())}}
         />
       </main>
     </div>
